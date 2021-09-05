@@ -17,6 +17,7 @@ public class UserVo {
 	private String remark;
 	private String birth;
 	private String image;
+	private String jwttoken = "";
 	
 	public int getRowNo() {
 		return rowNo;
@@ -114,7 +115,13 @@ public class UserVo {
 	public void setImage(String image) {
 		this.image = image;
 	}
+	public String getJwttoken() {
+		return jwttoken;
+	}
+	public void setJwttoken(String jwttoken) {
+		this.jwttoken = jwttoken;
+	}
 	
-
+	
 	
 }

@@ -15,8 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.douzone.ucare.config.JwtTokenUtil;
 import com.douzone.ucare.model.JwtRequest;
-import com.douzone.ucare.model.JwtResponse;
 import com.douzone.ucare.service.JwtUserDetailsService;
+import com.douzone.ucare.service.UserService;
+import com.douzone.ucare.vo.UserVo;
 
 @RestController
 @CrossOrigin
@@ -30,6 +31,9 @@ public class JwtAuthenticationController {
 
     @Autowired
     private JwtUserDetailsService userDetailsService;
+    
+    @Autowired
+    private UserService userService;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
@@ -39,8 +43,11 @@ public class JwtAuthenticationController {
             .loadUserByUsername(authenticationRequest.getUsername());
 
         final String token = jwtTokenUtil.generateToken(userDetails);
-
-        return ResponseEntity.ok(new JwtResponse(token));
+        
+        UserVo userVo = userService.login(authenticationRequest.getUsername());
+        userVo.setJwttoken(token);
+        
+        return ResponseEntity.ok(userVo);
     }
 
     private void authenticate(String username, String password) throws Exception {

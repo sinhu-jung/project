@@ -76,12 +76,13 @@ export default function SignInSide({ history }) {
     e.preventDefault();
 
     let user = {
-      id: id,
+      username: id,
       password: password
     }
     
     userService.login(user)
     .then( res => {
+      console.log(res.data);
       if(res.data) {
         console.log(user.id + '님이 성공적으로 로그인하였습니다.');
         sessionStorage.setItem('user', id);

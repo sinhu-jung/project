@@ -31,15 +31,15 @@ public class UserService {
 		return userRepository.addUser(user);
 	}
 
-	public UserVo login(UserVo user) {
-		return userRepository.findUser(user);
-	}
-
 	public int updateUser(UserVo user) {
 		return userRepository.updateUser(user);
 	}
 	
 	public UserVo fetchUser(UserVo user) {
 		return userRepository.fetchUser(user);
+	}
+
+	public UserVo login(String username) {
+		return userRepository.findUser(username);
 	}
 }

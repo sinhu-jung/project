@@ -39,10 +39,6 @@ public class UserRepository {
 		return count == 1;
 	}
 
-	public UserVo findUser(UserVo user) {
-		return sqlSession.selectOne("user.findUser", user);
-	}
-
 	
 	public int updateUser(UserVo user) {
 		return sqlSession.update("user.updateUser", user);
@@ -54,6 +50,10 @@ public class UserRepository {
 
 	public UserVo findByID(String username) {
 		return sqlSession.selectOne("user.getUserById", username);
+	}
+
+	public UserVo findUser(String username) {
+		return sqlSession.selectOne("user.findUser", username);
 	}
 
 
