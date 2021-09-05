@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.douzone.ucare.vo.UserVo" alias="uservo"/>
+		<typeAlias type="com.douzone.ucare.vo.SiteVo" alias="sitevo"/>
+		<typeAlias type="com.douzone.ucare.vo.DiseaseVo" alias="diseasevo"/>
+		<typeAlias type="com.douzone.ucare.vo.MedicineVo" alias="medicinevo"/>
+		<typeAlias type="com.douzone.ucare.vo.PatientVo" alias="patientvo"/>
+		<typeAlias type="com.douzone.ucare.vo.ReceiptVo" alias="receiptvo"/>
+		<typeAlias type="com.douzone.ucare.vo.HospitalVo" alias="hospitalvo"/>
+		<typeAlias type="com.douzone.ucare.vo.BoardVo" alias="boardvo"/>
+		<typeAlias type="com.douzone.ucare.vo.TimeVo" alias="timevo"/>
+		<typeAlias type="com.douzone.ucare.vo.DiagnosisVo" alias="diagnosisvo"/>
+    </typeAliases>	
+	<mappers>
+		<mapper resource="mybatis/mappers/user.xml" />
+		<mapper resource="mybatis/mappers/admin.xml" />
+		<mapper resource="mybatis/mappers/patient.xml" />
+		<mapper resource="mybatis/mappers/disease.xml" />
+		<mapper resource="mybatis/mappers/medicine.xml" />
+		<mapper resource="mybatis/mappers/receipt.xml" />
+		<mapper resource="mybatis/mappers/hospital.xml" />
+		<mapper resource="mybatis/mappers/board.xml" />
+		<mapper resource="mybatis/mappers/status.xml" />
+		<mapper resource="mybatis/mappers/time.xml" />
+		<mapper resource="mybatis/mappers/diagnosis.xml" />
+	</mappers>
+</configuration>

@@ -1,0 +1,14 @@
+**/.classpath
+**/.project
+**/.settings/
+**/target/
+**/build/
+**/webapp/assets/uploads-images/**
+!**/webapp/assets/uploads-images/dummy
+**/webapp/assets/images/**
+**/webapp/assets/js/**
+
+**/node_modules
+**/public/assets
+**/public/bundle.js
+**/public/main.js

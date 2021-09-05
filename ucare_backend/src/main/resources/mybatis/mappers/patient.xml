@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="patient">	
+	<insert id="create" parameterType="patientvo">
+		INSERT
+			INTO ucare.patient(name, ssn, age, gender, tel_no, address, detail_address, email, insurance_yn, diagnosis_type, visit_date, remark, ins_dt, user_no)
+		VALUES(
+			#{name },
+			#{ssn },
+			#{age },
+			#{gender },
+			#{telNo },
+			#{address },
+			#{detailAddress }, 
+			#{domain },
+			#{insurance },
+			#{diagnosis },
+			TO_DATE(#{visitDate },'YYYY-MM-DD'),
+			#{remark },
+			TO_DATE(#{visitDate },'YYYY-MM-DD'),
+			(SELECT user_no FROM ucare.user WHERE id = #{userId } )
+		)
+	</insert>
+	
+	<select id="retrieveAll" resultType="patientvo" >
+		SELECT 
+			patient_no AS patientNo, 
+			name,
+			(gender||'/'||age) AS ageGender,
+			age AS age,
+			gender AS gender,
+			CONCAT(SUBSTR(ssn, 1, 8), '******') AS ssn,
+			tel_no AS telNo,
+			address AS address,
+			detail_address AS detailAddress,
+			insurance_yn AS insurance,
+			diagnosis_type AS diagnosis,
+			ins_dt AS insDt,
+		   split_part(email, '@', 1) as emailId,
+		   split_part(email, '@', 2) as email,
+		   remark AS remark
+		FROM ucare.patient
+		ORDER BY patient_no desc
+	</select>
+	
+	<select id="retrieve" resultType="patientvo" >
+		SELECT 
+			patient_no AS patientNo, 
+			name,
+			(gender||'/'||age) AS ageGender,
+			age AS age,
+			gender AS gender,
+			CONCAT(SUBSTR(ssn, 1, 8), '******') AS ssn,
+			tel_no AS telNo,
+			SUBSTR(address, 1, 13) AS address,
+			insurance_yn AS insurance,
+			diagnosis_type AS diagnosis,
+			ins_dt AS insDt,
+		   split_part(email, '@', 1) as emailId,
+		   split_part(email, '@', 2) as email,
+		   remark AS remark
+		FROM ucare.patient
+		WHERE patient_no = #{patientNo }
+		ORDER BY patient_no desc
+	</select>
+	
+	
+	<update id="update" parameterType="patientvo">
+			UPDATE  ucare.patient
+			   SET 
+		   		name = #{name },
+		   		ssn = #{ssn },
+		   		age = #{age },
+		   		gender = #{gender },
+		   		tel_no = #{telNo },
+		   		address = #{address },
+		   		detail_address = #{detailAddress }, 
+		   		email = #{domain },
+		   		insurance_yn = #{insurance },
+		   		remark = #{remark },
+		   		upt_no = #{uptNo },
+		   		upt_dt = now()
+			WHERE patient_no = #{patientNo }
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		DELETE
+		  FROM ucare.disease
+		 WHERE disease_no = #{diseaseNo }
+	</delete>
+
+</mapper>
