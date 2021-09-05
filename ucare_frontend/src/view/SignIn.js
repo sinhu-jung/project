@@ -82,9 +82,8 @@ export default function SignInSide({ history }) {
     
     userService.login(user)
     .then( res => {
-      console.log(res.data);
       if(res.data) {
-        console.log(user.id + '님이 성공적으로 로그인하였습니다.');
+        console.log(user.username + '님이 성공적으로 로그인하였습니다.');
         sessionStorage.setItem('user', id);
         sessionStorage.setItem('user_no', res.data.userNo);
         sessionStorage.setItem('role', res.data.role);
